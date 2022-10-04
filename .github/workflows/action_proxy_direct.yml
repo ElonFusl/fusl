@@ -20,25 +20,6 @@ jobs:
           php-version: '8.1'
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
           coverage: none
-      - name: hola-proxy | xsv
-        run: |
-          sudo snap install hola-proxy
-          XSV_VERSION=$(curl -s "https://api.github.com/repos/BurntSushi/xsv/releases/latest" | grep -Po '"tag_name": "\K[0-9.]+')
-          curl -Lo xsv.tar.gz "https://github.com/BurntSushi/xsv/releases/latest/download/xsv-${XSV_VERSION}-x86_64-unknown-linux-musl.tar.gz"
-          sudo tar xf xsv.tar.gz -C /usr/local/bin
-          rm -rf xsv.tar.gz
-      - name: script_generate_proxylist_hola
-        run: |
-          #bash script_generate_proxylist_hola.sh
-          #cat proxies_hola.txt
-      - name: install mubeng
-        run: |
-          #export PATH=${PATH}:`go env GOPATH`/bin
-          #go install ktbs.dev/mubeng/cmd/mubeng@latest
-      - name: mubeng
-        run: |
-         # export PATH=${PATH}:`go env GOPATH`/bin
-          #mubeng -f proxies_hola.txt -a '127.0.0.1:44444' &
       - name: Run Proxy
         run: |
           bash code.sh ${{ matrix.shard }} 
