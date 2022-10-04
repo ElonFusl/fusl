@@ -17,6 +17,13 @@ if (isset($argc)) {
     echo "argc and argv disabled\n";
 }
 
+if($shard != null)
+{
+    $shard = $shard + 100;
+}
+
+
+
 $array_urls_to_fetch = get_urls_to_download();
 foreach ($array_urls_to_fetch as $line) {
     $url = get_url_from_fid($line);
